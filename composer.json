@@ -1,0 +1,21 @@
+{
+    "name": "myparcelcom/wms-commons",
+    "description": "Library with common classes used for constructing MyParcel.com WMS Integrations.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "Myparcelcom\\WmsCommons\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MyParcel.com Development Team"
+        }
+    ]
+}
