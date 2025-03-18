@@ -21,7 +21,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 
 /**
- * Maps the default middleware needed for marketplaces.
+ * Maps the default middleware needed for WMS integrations.
  * It does this by being passed to `Application::configure()->withMiddleware()` in `boostrap/app.php`
  */
 class DefaultMiddleware
@@ -29,14 +29,13 @@ class DefaultMiddleware
     public function __invoke(Middleware $middleware): void
     {
         $middleware->use([
+            'throttle:api',
+            ForceJsonResponse::class,
             TrustProxies::class,
             HandleCors::class,
             ValidatePostSize::class,
             TrimStrings::class,
             ConvertEmptyStringsToNull::class,
-        ]);
-        $middleware->api([
-            'throttle:api',
             SubstituteBindings::class,
         ]);
         $middleware->alias([
@@ -48,9 +47,6 @@ class DefaultMiddleware
             'signed'                     => ValidateSignature::class,
             'throttle'                   => ThrottleRequests::class,
             'verified'                   => EnsureEmailIsVerified::class,
-            'transform_many_to_json_api' => TransformsManyToJsonApi::class,
-            'transform_one_to_json_api'  => TransformsOneToJsonApi::class,
-            'matching_channel_only'      => MatchingChannelOnly::class,
         ]);
     }
 }
