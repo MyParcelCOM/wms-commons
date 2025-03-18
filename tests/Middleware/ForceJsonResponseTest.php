@@ -14,7 +14,7 @@ class ForceJsonResponseTest extends TestCase
         {
             $request = new Request();
 
-            $this->assertNull($request->get('Accept'));
+            $this->assertNull($request->header('Accept'));
 
             $middleware = new ForceJsonResponse();
             $middleware->handle($request, fn () => null);
