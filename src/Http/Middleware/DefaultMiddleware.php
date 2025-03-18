@@ -29,6 +29,7 @@ class DefaultMiddleware
     public function __invoke(Middleware $middleware): void
     {
         $middleware->use([
+            ForceJsonResponse::class,
             TrustProxies::class,
             HandleCors::class,
             ValidatePostSize::class,
