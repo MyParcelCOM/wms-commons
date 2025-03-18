@@ -21,7 +21,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 
 /**
- * Maps the default middleware needed for marketplaces.
+ * Maps the default middleware needed for WMS integrations.
  * It does this by being passed to `Application::configure()->withMiddleware()` in `boostrap/app.php`
  */
 class DefaultMiddleware
