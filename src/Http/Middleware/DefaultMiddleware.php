@@ -41,14 +41,14 @@ class DefaultMiddleware
             SubstituteBindings::class,
         ]);
         $middleware->alias([
-            'auth'                       => Authenticate::class,
-            'auth.basic'                 => AuthenticateWithBasicAuth::class,
-            'cache.headers'              => SetCacheHeaders::class,
-            'can'                        => Authorize::class,
-            'password.confirm'           => RequirePassword::class,
-            'signed'                     => ValidateSignature::class,
-            'throttle'                   => ThrottleRequests::class,
-            'verified'                   => EnsureEmailIsVerified::class,
+            'auth'             => Authenticate::class,
+            'auth.basic'       => AuthenticateWithBasicAuth::class,
+            'cache.headers'    => SetCacheHeaders::class,
+            'can'              => Authorize::class,
+            'password.confirm' => RequirePassword::class,
+            'signed'           => ValidateSignature::class,
+            'throttle'         => ThrottleRequests::class,
+            'verified'         => EnsureEmailIsVerified::class,
         ]);
     }
 }
