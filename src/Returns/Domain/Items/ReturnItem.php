@@ -40,7 +40,7 @@ readonly class ReturnItem
             weight: $requestArray['weight'] ?? null,
             weightUnit: isset($requestArray['weight_unit']) ? WeightUnit::from($requestArray['weight_unit']) : null,
             comment: $requestArray['comment'] ?? null,
-            returnReason: $requestArray['return_reason'] ?? null
+            returnReason: $requestArray['return_reason'] ?? null,
         );
     }
 }

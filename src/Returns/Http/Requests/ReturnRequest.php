@@ -43,8 +43,8 @@ class ReturnRequest extends FormRequest
         return new ReturnItemCollection(
             ...array_map(
                 fn (array $item) => ReturnItem::fromSnakeCaseArray($item),
-                $this->input('data.items')
-            )
+                $this->input('data.items'),
+            ),
         );
     }
 }

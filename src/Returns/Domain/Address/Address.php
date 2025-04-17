@@ -20,7 +20,8 @@ class Address
         public ?string $lastName,
         public ?string $email,
         public ?string $phoneNumber,
-    ) {}
+    ) {
+    }
 
     public static function fromSnakeCaseArray(array $data): self
     {
@@ -37,7 +38,7 @@ class Address
             firstName: $data['first_name'] ?? null,
             lastName: $data['last_name'] ?? null,
             email: $data['email'] ?? null,
-            phoneNumber: $data['phone_number'] ?? null
+            phoneNumber: $data['phone_number'] ?? null,
         );
     }
 

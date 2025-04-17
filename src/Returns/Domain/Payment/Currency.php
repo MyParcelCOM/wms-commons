@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace MyParcelCom\Wms\Returns\Domain\Payment;
+
 enum Currency: string
 {
     case AED = 'AED';
