@@ -19,11 +19,11 @@ readonly class ReturnItem
         public int $quantity,
         public int $priceAmount,
         public Currency $currency,
+        public string $description,
         public ?int $weight = null,
         public ?WeightUnit $weightUnit = null,
         public ?string $comment = null,
         public ?string $returnReason = null,
-        public string $description
     ) {
     }
 
@@ -36,11 +36,11 @@ readonly class ReturnItem
             quantity: $requestArray['quantity'],
             priceAmount: $requestArray['price_amount'],
             currency: Currency::from($requestArray['currency']),
+            description: $requestArray['description'],
             weight: $requestArray['weight'] ?? null,
             weightUnit: isset($requestArray['weight_unit']) ? WeightUnit::from($requestArray['weight_unit']) : null,
             comment: $requestArray['comment'] ?? null,
-            returnReason: $requestArray['return_reason'] ?? null,
-            description: $requestArray['description']
+            returnReason: $requestArray['return_reason'] ?? null
         );
     }
 }
