@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MyParcelCom\Wms\Returns\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use MyParcelCom\Wms\Returns\Domain\Items\ReturnItem;
 use MyParcelCom\Wms\Returns\Domain\Items\ReturnItemCollection;
@@ -16,9 +17,9 @@ class ReturnRequest extends FormRequest
         return $this->input('data.order_reference');
     }
 
-    public function createdAt(): int
+    public function createdAt(): Carbon
     {
-        return $this->input('data.created_at');
+        return Carbon::createFromTimestamp($this->input('data.created_at'));
     }
 
     public function consumerAddress(): array
