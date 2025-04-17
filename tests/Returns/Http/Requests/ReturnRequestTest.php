@@ -98,9 +98,6 @@ class ReturnRequestTest extends TestCase
         $this->assertPaymentMatchesStubArray($request->payment(), Arr::get($stub, 'data.payment'));
         $this->assertItemMatchesStubArray($request->items()[0], Arr::get($stub, 'data.items.0'));
         $this->assertItemMatchesStubArray($request->items()[1], Arr::get($stub, 'data.items.1'));
-
-
-
     }
 
     private function assertAddressMatchesStubArray(Address $address, array $stub): void
