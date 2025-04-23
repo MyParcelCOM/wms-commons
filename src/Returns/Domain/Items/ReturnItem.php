@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MyParcelCom\Wms\Returns\Domain\Items;
 
 use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
+use MyParcelCom\Wms\Returns\Domain\QuestionAnswer\QuestionAnswer;
+use MyParcelCom\Wms\Returns\Domain\QuestionAnswer\QuestionAnswerCollection;
 
 /**
  * ReturnItem extends the ArrayObject class with getters to make
@@ -24,6 +26,9 @@ readonly class ReturnItem
         public ?WeightUnit $weightUnit = null,
         public ?string $comment = null,
         public ?string $returnReason = null,
+        public ?string $imageUrl = null,
+        public PreferredOutcome $preferredOutcome,
+        public QuestionAnswerCollection $questionAnswers,
     ) {
     }
 
@@ -41,6 +46,14 @@ readonly class ReturnItem
             weightUnit: isset($requestArray['weight_unit']) ? WeightUnit::from($requestArray['weight_unit']) : null,
             comment: $requestArray['comment'] ?? null,
             returnReason: $requestArray['return_reason'] ?? null,
+            imageUrl: $requestArray['image_url'] ?? null,
+            preferredOutcome: PreferredOutcome::from($requestArray['preferred_outcome']),
+            questionAnswers: new QuestionAnswerCollection(
+                ...array_map(
+                    fn (array $item) => QuestionAnswer::from($item),
+                    $requestArray['return_question_answers'],
+                )
+            ),
         );
     }
 }
