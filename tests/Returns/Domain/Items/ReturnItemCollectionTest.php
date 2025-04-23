@@ -11,6 +11,9 @@ use MyParcelCom\Wms\Returns\Domain\Items\ReturnItemCollection;
 use MyParcelCom\Wms\Returns\Domain\Items\WeightUnit;
 use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
 use PHPUnit\Framework\TestCase;
+use function PHPUnit\Framework\assertCount;
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertInstanceOf;
 
 class ReturnItemCollectionTest extends TestCase
 {
@@ -55,12 +58,12 @@ class ReturnItemCollectionTest extends TestCase
 
         $collection = new ReturnItemCollection($item1, $item2);
 
-        $this->assertCount(2, $collection);
+        assertCount(2, $collection);
 
-        $this->assertInstanceOf(ReturnItem::class, $collection[0]);
-        $this->assertInstanceOf(ReturnItem::class, $collection[1]);
+        assertInstanceOf(ReturnItem::class, $collection[0]);
+        assertInstanceOf(ReturnItem::class, $collection[1]);
 
-        $this->assertEquals($item1, $collection[0]);
-        $this->assertEquals($item2, $collection[1]);
+        assertEquals($item1, $collection[0]);
+        assertEquals($item2, $collection[1]);
     }
 }

@@ -9,6 +9,8 @@ use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
 use MyParcelCom\Wms\Returns\Domain\Payment\ReturnPayment;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertEquals;
+
 class ReturnPaymentTest extends TestCase
 {
     public function test_it_can_be_created_from_snake_case_array(): void
@@ -22,8 +24,8 @@ class ReturnPaymentTest extends TestCase
 
         $payment = ReturnPayment::from($stub);
 
-        $this->assertEquals($payment->externalPaymentId, $stub['external_payment_id']);
-        $this->assertEquals($payment->amount, $stub['amount']);
-        $this->assertEquals($payment->currency->value, $stub['currency']);
+        assertEquals($payment->externalPaymentId, $stub['external_payment_id']);
+        assertEquals($payment->amount, $stub['amount']);
+        assertEquals($payment->currency->value, $stub['currency']);
     }
 }

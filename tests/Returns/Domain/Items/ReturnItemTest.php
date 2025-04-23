@@ -11,6 +11,8 @@ use MyParcelCom\Wms\Returns\Domain\Items\WeightUnit;
 use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertEquals;
+
 class ReturnItemTest extends TestCase
 {
 
@@ -47,28 +49,28 @@ class ReturnItemTest extends TestCase
 
         $returnItem = ReturnItem::from($stub);
 
-        $this->assertEquals($stub['external_reference'], $returnItem->externalReference);
-        $this->assertEquals($stub['sku'], $returnItem->sku);
-        $this->assertEquals($stub['name'], $returnItem->name);
-        $this->assertEquals($stub['quantity'], $returnItem->quantity);
-        $this->assertEquals($stub['price_amount'], $returnItem->priceAmount);
-        $this->assertEquals(Currency::from($stub['currency']), $returnItem->currency);
-        $this->assertEquals($stub['weight'], $returnItem->weight);
-        $this->assertEquals(WeightUnit::from($stub['weight_unit']), $returnItem->weightUnit);
-        $this->assertEquals($stub['comment'], $returnItem->comment);
-        $this->assertEquals($stub['description'], $returnItem->description);
-        $this->assertEquals($stub['return_reason'], $returnItem->returnReason);
-        $this->assertEquals($stub['image_url'], $returnItem->imageUrl);
-        $this->assertEquals(PreferredOutcome::from($stub['preferred_outcome']), $returnItem->preferredOutcome);
-        $this->assertEquals($stub['return_question_answers'][0]['code'], $returnItem->questionAnswers[0]->code);
-        $this->assertEquals($stub['return_question_answers'][0]['answer'], $returnItem->questionAnswers[0]->answer);
-        $this->assertEquals(
+        assertEquals($stub['external_reference'], $returnItem->externalReference);
+        assertEquals($stub['sku'], $returnItem->sku);
+        assertEquals($stub['name'], $returnItem->name);
+        assertEquals($stub['quantity'], $returnItem->quantity);
+        assertEquals($stub['price_amount'], $returnItem->priceAmount);
+        assertEquals(Currency::from($stub['currency']), $returnItem->currency);
+        assertEquals($stub['weight'], $returnItem->weight);
+        assertEquals(WeightUnit::from($stub['weight_unit']), $returnItem->weightUnit);
+        assertEquals($stub['comment'], $returnItem->comment);
+        assertEquals($stub['description'], $returnItem->description);
+        assertEquals($stub['return_reason'], $returnItem->returnReason);
+        assertEquals($stub['image_url'], $returnItem->imageUrl);
+        assertEquals(PreferredOutcome::from($stub['preferred_outcome']), $returnItem->preferredOutcome);
+        assertEquals($stub['return_question_answers'][0]['code'], $returnItem->questionAnswers[0]->code);
+        assertEquals($stub['return_question_answers'][0]['answer'], $returnItem->questionAnswers[0]->answer);
+        assertEquals(
             $stub['return_question_answers'][0]['description'],
             $returnItem->questionAnswers[0]->description,
         );
-        $this->assertEquals($stub['return_question_answers'][1]['code'], $returnItem->questionAnswers[1]->code);
-        $this->assertEquals($stub['return_question_answers'][1]['answer'], $returnItem->questionAnswers[1]->answer);
-        $this->assertEquals(
+        assertEquals($stub['return_question_answers'][1]['code'], $returnItem->questionAnswers[1]->code);
+        assertEquals($stub['return_question_answers'][1]['answer'], $returnItem->questionAnswers[1]->answer);
+        assertEquals(
             $stub['return_question_answers'][1]['description'],
             $returnItem->questionAnswers[1]->description,
         );
