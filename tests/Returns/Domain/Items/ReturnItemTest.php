@@ -26,7 +26,7 @@ class ReturnItemTest extends TestCase
             'weight'             => $faker->randomNumber(),
             'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
             'comment'            => $faker->sentence(),
-            'description'       => $faker->sentence(),
+            'description'        => $faker->sentence(),
         ];
 
         $returnItem = ReturnItem::from($stub);
