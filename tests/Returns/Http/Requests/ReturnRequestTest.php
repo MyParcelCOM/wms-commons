@@ -10,6 +10,7 @@ use MyParcelCom\Wms\Returns\Domain\Items\WeightUnit;
 use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
 use MyParcelCom\Wms\Returns\Http\Requests\ReturnRequest;
 use PHPUnit\Framework\TestCase;
+
 use function PHPUnit\Framework\assertEquals;
 
 
@@ -22,34 +23,34 @@ class ReturnRequestTest extends TestCase
                 'order_reference'  => 'ref-order-123',
                 'created_at'       => 1745409687,
                 'consumer_address' => [
-                    "street_1" => 'Bakers Street',
-                    "street_2" => null,
-                    "street_number" => 123,
+                    "street_1"             => 'Bakers Street',
+                    "street_2"             => null,
+                    "street_number"        => 123,
                     "street_number_suffix" => 'A',
-                    "postal_code" => '1010XS',
-                    "city" => 'Amsterdam',
-                    "state_code" => 'NH',
-                    "country_code" => 'NL',
-                    "company" => 'MyParcel',
-                    "first_name" => 'Sherlock',
-                    "last_name" => 'Holmes',
-                    "email" => 'sher.holm@myparcel.com',
-                    "phone_number" => '06-35212523',
+                    "postal_code"          => '1010XS',
+                    "city"                 => 'Amsterdam',
+                    "state_code"           => 'NH',
+                    "country_code"         => 'NL',
+                    "company"              => 'MyParcel',
+                    "first_name"           => 'Sherlock',
+                    "last_name"            => 'Holmes',
+                    "email"                => 'sher.holm@myparcel.com',
+                    "phone_number"         => '06-35212523',
                 ],
                 'return_address'   => [
-                    "street_1" => 'Cookers Street',
-                    "street_2" => 'Cookies Street',
-                    "street_number" => 111,
+                    "street_1"             => 'Cookers Street',
+                    "street_2"             => 'Cookies Street',
+                    "street_number"        => 111,
                     "street_number_suffix" => 'BCD',
-                    "postal_code" => '9999ZZ',
-                    "city" => 'Harlem',
-                    "state_code" => 'FR',
-                    "country_code" => 'NL',
-                    "company" => null,
-                    "first_name" => 'John',
-                    "last_name" => 'Watson',
-                    "email" => 'john-watson@walla.co.il',
-                    "phone_number" => '06-12345678',
+                    "postal_code"          => '9999ZZ',
+                    "city"                 => 'Harlem',
+                    "state_code"           => 'FR',
+                    "country_code"         => 'NL',
+                    "company"              => null,
+                    "first_name"           => 'John',
+                    "last_name"            => 'Watson',
+                    "email"                => 'john-watson@walla.co.il',
+                    "phone_number"         => '06-12345678',
                 ],
                 'payment'          => [
                     'external_payment_id' => 'payment-12345',
@@ -58,27 +59,27 @@ class ReturnRequestTest extends TestCase
                 ],
                 'items'            => [
                     [
-                        'external_reference' => 'ref-item-1',
-                        'sku'                => 'sku-123',
-                        'name'               => 'Sample Item 1',
-                        'quantity'           => 2,
-                        'price_amount'       => 500,
-                        'currency'           => 'EUR',
-                        'weight'             => 10,
-                        'weight_unit'        => 'kg',
-                        'comment'            => 'No issues',
-                        'return_reason'      => 'damaged',
-                        'description'        => 'A sample item description',
-                        'image_url'          => 'https://example.com/image.jpg',
-                        'preferred_outcome'  => 'exchange',
+                        'external_reference'      => 'ref-item-1',
+                        'sku'                     => 'sku-123',
+                        'name'                    => 'Sample Item 1',
+                        'quantity'                => 2,
+                        'price_amount'            => 500,
+                        'currency'                => 'EUR',
+                        'weight'                  => 10,
+                        'weight_unit'             => 'kg',
+                        'comment'                 => 'No issues',
+                        'return_reason'           => 'damaged',
+                        'description'             => 'A sample item description',
+                        'image_url'               => 'https://example.com/image.jpg',
+                        'preferred_outcome'       => 'exchange',
                         'return_question_answers' => [
                             [
-                                'code' => 'myparcelcom:question-1',
+                                'code'        => 'myparcelcom:question-1',
                                 'answer'      => 'This is the solution',
                                 'description' => 'This is the description',
                             ],
                             [
-                                'code' => 'myparcelcom:question-2',
+                                'code'        => 'myparcelcom:question-2',
                                 'answer'      => 'Yet another solution',
                                 'description' => 'Yet another description',
                             ],
@@ -99,8 +100,8 @@ class ReturnRequestTest extends TestCase
                         'image_url'          => 'https://example.com/image2.jpg',
                         'preferred_outcome'  => 'refund',
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
 
         $request = new ReturnRequest();
@@ -175,6 +176,5 @@ class ReturnRequestTest extends TestCase
         assertEquals('https://example.com/image2.jpg', $request->items()[1]->imageUrl);
         assertEquals(PreferredOutcome::REFUND, $request->items()[1]->preferredOutcome);
         assertEquals(null, $request->items()[1]->questionAnswers);
-
     }
 }

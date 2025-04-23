@@ -16,7 +16,6 @@ class ReturnItemCollectionTest extends TestCase
 {
     public function test_it_can_create_a_collection_of_return_items(): void
     {
-
         $faker = Factory::create();
 
         $stub1 = [

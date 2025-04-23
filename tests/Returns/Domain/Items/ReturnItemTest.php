@@ -18,27 +18,27 @@ class ReturnItemTest extends TestCase
     {
         $faker = Factory::create();
         $stub = [
-            'external_reference' => $faker->word(),
-            'sku'                => $faker->word(),
-            'name'               => $faker->name(),
-            'quantity'           => $faker->randomNumber(),
-            'price_amount'       => $faker->randomNumber(),
-            'currency'           => $faker->randomElement(Currency::cases())->value,
-            'weight'             => $faker->randomNumber(),
-            'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
-            'comment'            => $faker->sentence(),
-            'description'        => $faker->sentence(),
-            'return_reason'      => $faker->sentence(),
-            'image_url'          => $faker->url(),
-            'preferred_outcome'  => $faker->randomElement(PreferredOutcome::cases())->value,
+            'external_reference'      => $faker->word(),
+            'sku'                     => $faker->word(),
+            'name'                    => $faker->name(),
+            'quantity'                => $faker->randomNumber(),
+            'price_amount'            => $faker->randomNumber(),
+            'currency'                => $faker->randomElement(Currency::cases())->value,
+            'weight'                  => $faker->randomNumber(),
+            'weight_unit'             => $faker->randomElement(WeightUnit::cases())->value,
+            'comment'                 => $faker->sentence(),
+            'description'             => $faker->sentence(),
+            'return_reason'           => $faker->sentence(),
+            'image_url'               => $faker->url(),
+            'preferred_outcome'       => $faker->randomElement(PreferredOutcome::cases())->value,
             'return_question_answers' => [
                 [
-                    'code' => 'myparcelcom:question-1',
+                    'code'        => 'myparcelcom:question-1',
                     'answer'      => 'This is the solution',
                     'description' => 'This is the description',
                 ],
                 [
-                    'code' => 'myparcelcom:question-2',
+                    'code'        => 'myparcelcom:question-2',
                     'answer'      => 'Yet another solution',
                     'description' => 'Yet another description',
                 ],
@@ -61,10 +61,16 @@ class ReturnItemTest extends TestCase
         $this->assertEquals($stub['image_url'], $returnItem->imageUrl);
         $this->assertEquals(PreferredOutcome::from($stub['preferred_outcome']), $returnItem->preferredOutcome);
         $this->assertEquals($stub['return_question_answers'][0]['code'], $returnItem->questionAnswers[0]->code);
-        $this->assertEquals($stub['return_question_answers'][0]['answer'], $returnItem->questionAnswers[0]->answer, );
-        $this->assertEquals($stub['return_question_answers'][0]['description'], $returnItem->questionAnswers[0]->description, );
+        $this->assertEquals($stub['return_question_answers'][0]['answer'], $returnItem->questionAnswers[0]->answer);
+        $this->assertEquals(
+            $stub['return_question_answers'][0]['description'],
+            $returnItem->questionAnswers[0]->description,
+        );
         $this->assertEquals($stub['return_question_answers'][1]['code'], $returnItem->questionAnswers[1]->code);
         $this->assertEquals($stub['return_question_answers'][1]['answer'], $returnItem->questionAnswers[1]->answer);
-        $this->assertEquals($stub['return_question_answers'][1]['description'], $returnItem->questionAnswers[1]->description);
+        $this->assertEquals(
+            $stub['return_question_answers'][1]['description'],
+            $returnItem->questionAnswers[1]->description,
+        );
     }
 }

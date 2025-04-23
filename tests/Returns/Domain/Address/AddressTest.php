@@ -15,19 +15,19 @@ class AddressTest extends TestCase
         $faker = Factory::create();
 
         $stub = [
-            "street_1" => $faker->streetName(),
-            "street_2" => null,
-            "street_number" => $faker->randomNumber(),
+            "street_1"             => $faker->streetName(),
+            "street_2"             => null,
+            "street_number"        => $faker->randomNumber(),
             "street_number_suffix" => $faker->word(),
-            "postal_code" => $faker->postcode(),
-            "city" => $faker->city(),
-            "state_code" => $faker->countryCode(),
-            "country_code" => $faker->countryCode(),
-            "company" => $faker->company(),
-            "first_name" => $faker->firstName(),
-            "last_name" => $faker->lastName(),
-            "email" => $faker->email(),
-            "phone_number" => $faker->phoneNumber(),
+            "postal_code"          => $faker->postcode(),
+            "city"                 => $faker->city(),
+            "state_code"           => $faker->countryCode(),
+            "country_code"         => $faker->countryCode(),
+            "company"              => $faker->company(),
+            "first_name"           => $faker->firstName(),
+            "last_name"            => $faker->lastName(),
+            "email"                => $faker->email(),
+            "phone_number"         => $faker->phoneNumber(),
         ];
 
         $address = Address::from($stub);
@@ -45,6 +45,5 @@ class AddressTest extends TestCase
         $this->assertEquals($address->lastName, $stub['last_name']);
         $this->assertEquals($address->email, $stub['email']);
         $this->assertEquals($address->phoneNumber, $stub['phone_number']);
-
     }
 }
