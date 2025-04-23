@@ -91,16 +91,16 @@ class ReturnRequestTest extends TestCase
         $request = new ReturnRequest();
         $request->replace($stub);
 
-        $this->assertEquals($request->orderReference(), Arr::get($stub, 'data.order_reference'));
-        $this->assertEquals($request->createdAt(), Carbon::createFromTimestamp(Arr::get($stub, 'data.created_at')));
-        $this->assertAddressMatchesStubArray($request->consumerAddress(), Arr::get($stub, 'data.consumer_address'));
-        $this->assertAddressMatchesStubArray($request->returnAddress(), Arr::get($stub, 'data.return_address'));
-        $this->assertPaymentMatchesStubArray($request->payment(), Arr::get($stub, 'data.payment'));
-        $this->assertItemMatchesStubArray($request->items()[0], Arr::get($stub, 'data.items.0'));
-        $this->assertItemMatchesStubArray($request->items()[1], Arr::get($stub, 'data.items.1'));
+        $this->assertEquals(Arr::get($stub, 'data.order_reference'), $request->orderReference());
+        $this->assertEquals(Carbon::createFromTimestamp(Arr::get($stub, 'data.created_at')), $request->createdAt());
+        $this->assertAddressMatchesStubArray(Arr::get($stub, 'data.consumer_address'), $request->consumerAddress());
+        $this->assertAddressMatchesStubArray(Arr::get($stub, 'data.return_address'), $request->returnAddress());
+        $this->assertPaymentMatchesStubArray(Arr::get($stub, 'data.payment'), $request->payment());
+        $this->assertItemMatchesStubArray(Arr::get($stub, 'data.items.0'), $request->items()[0]);
+        $this->assertItemMatchesStubArray(Arr::get($stub, 'data.items.1'), $request->items()[1]);
     }
 
-    private function assertAddressMatchesStubArray(Address $address, array $stub): void
+    private function assertAddressMatchesStubArray(array $stub, Address $address): void
     {
         $this->assertEquals($address->street1, $stub['street_1']);
         $this->assertEquals($address->street2, $stub['street_2']);
@@ -117,14 +117,14 @@ class ReturnRequestTest extends TestCase
         $this->assertEquals($address->phoneNumber, $stub['phone_number']);
     }
 
-    private function assertPaymentMatchesStubArray(ReturnPayment $payment, array $stub): void
+    private function assertPaymentMatchesStubArray(array $stub, ReturnPayment $payment): void
     {
         $this->assertEquals($payment->externalPaymentId, $stub['external_payment_id']);
         $this->assertEquals($payment->amount, $stub['amount']);
         $this->assertEquals($payment->currency->value, $stub['currency']);
     }
 
-    private function assertItemMatchesStubArray(ReturnItem $item, array $stub): void
+    private function assertItemMatchesStubArray(array $stub, ReturnItem $item): void
     {
         $this->assertEquals($item->externalReference, $stub['external_reference']);
         $this->assertEquals($item->sku, $stub['sku']);
