@@ -47,24 +47,24 @@ class ReturnItemTest extends TestCase
 
         $returnItem = ReturnItem::from($stub);
 
-        $this->assertEquals($returnItem->externalReference, $stub['external_reference']);
-        $this->assertEquals($returnItem->sku, $stub['sku']);
-        $this->assertEquals($returnItem->name, $stub['name']);
-        $this->assertEquals($returnItem->quantity, $stub['quantity']);
-        $this->assertEquals($returnItem->priceAmount, $stub['price_amount']);
-        $this->assertEquals($returnItem->currency, Currency::from($stub['currency']));
-        $this->assertEquals($returnItem->weight, $stub['weight']);
-        $this->assertEquals($returnItem->weightUnit, WeightUnit::from($stub['weight_unit']));
-        $this->assertEquals($returnItem->comment, $stub['comment']);
-        $this->assertEquals($returnItem->description, $stub['description']);
-        $this->assertEquals($returnItem->returnReason, $stub['return_reason']);
-        $this->assertEquals($returnItem->imageUrl, $stub['image_url']);
-        $this->assertEquals($returnItem->preferredOutcome, PreferredOutcome::from($stub['preferred_outcome']));
-        $this->assertEquals($returnItem->questionAnswers[0]->code, $stub['return_question_answers'][0]['code']);
-        $this->assertEquals($returnItem->questionAnswers[0]->answer, $stub['return_question_answers'][0]['answer']);
-        $this->assertEquals($returnItem->questionAnswers[0]->description, $stub['return_question_answers'][0]['description']);
-        $this->assertEquals($returnItem->questionAnswers[1]->code, $stub['return_question_answers'][1]['code']);
-        $this->assertEquals($returnItem->questionAnswers[1]->answer, $stub['return_question_answers'][1]['answer']);
-        $this->assertEquals($returnItem->questionAnswers[1]->description, $stub['return_question_answers'][1]['description']);
+        $this->assertEquals($stub['external_reference'], $returnItem->externalReference);
+        $this->assertEquals($stub['sku'], $returnItem->sku);
+        $this->assertEquals($stub['name'], $returnItem->name);
+        $this->assertEquals($stub['quantity'], $returnItem->quantity);
+        $this->assertEquals($stub['price_amount'], $returnItem->priceAmount);
+        $this->assertEquals(Currency::from($stub['currency']), $returnItem->currency);
+        $this->assertEquals($stub['weight'], $returnItem->weight);
+        $this->assertEquals(WeightUnit::from($stub['weight_unit']), $returnItem->weightUnit);
+        $this->assertEquals($stub['comment'], $returnItem->comment);
+        $this->assertEquals($stub['description'], $returnItem->description);
+        $this->assertEquals($stub['return_reason'], $returnItem->returnReason);
+        $this->assertEquals($stub['image_url'], $returnItem->imageUrl);
+        $this->assertEquals(PreferredOutcome::from($stub['preferred_outcome']), $returnItem->preferredOutcome);
+        $this->assertEquals($stub['return_question_answers'][0]['code'], $returnItem->questionAnswers[0]->code);
+        $this->assertEquals($stub['return_question_answers'][0]['answer'], $returnItem->questionAnswers[0]->answer, );
+        $this->assertEquals($stub['return_question_answers'][0]['description'], $returnItem->questionAnswers[0]->description, );
+        $this->assertEquals($stub['return_question_answers'][1]['code'], $returnItem->questionAnswers[1]->code);
+        $this->assertEquals($stub['return_question_answers'][1]['answer'], $returnItem->questionAnswers[1]->answer);
+        $this->assertEquals($stub['return_question_answers'][1]['description'], $returnItem->questionAnswers[1]->description);
     }
 }
