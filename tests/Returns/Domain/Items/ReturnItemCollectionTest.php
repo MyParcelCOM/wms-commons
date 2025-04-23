@@ -28,7 +28,7 @@ class ReturnItemCollectionTest extends TestCase
             'weight'             => $faker->randomNumber(),
             'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
             'comment'            => $faker->sentence(),
-            'description'       => $faker->sentence(),
+            'description'        => $faker->sentence(),
         ];
 
         $stub2 = [
@@ -41,11 +41,11 @@ class ReturnItemCollectionTest extends TestCase
             'weight'             => $faker->randomNumber(),
             'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
             'comment'            => $faker->sentence(),
-            'description'       => $faker->sentence(),
+            'description'        => $faker->sentence(),
         ];
 
-        $item1 = ReturnItem::fromSnakeCaseArray($stub1);;
-        $item2 = ReturnItem::fromSnakeCaseArray($stub2);
+        $item1 = ReturnItem::from($stub1);;
+        $item2 = ReturnItem::from($stub2);
 
         $collection = new ReturnItemCollection($item1, $item2);
 

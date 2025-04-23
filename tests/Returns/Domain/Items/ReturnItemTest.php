@@ -29,7 +29,7 @@ class ReturnItemTest extends TestCase
             'description'       => $faker->sentence(),
         ];
 
-        $returnItem = ReturnItem::fromSnakeCaseArray($stub);
+        $returnItem = ReturnItem::from($stub);
 
         $this->assertEquals($returnItem->externalReference, $stub['external_reference']);
         $this->assertEquals($returnItem->sku, $stub['sku']);

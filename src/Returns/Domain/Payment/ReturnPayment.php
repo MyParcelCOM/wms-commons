@@ -13,7 +13,7 @@ readonly class ReturnPayment
     ) {
     }
 
-    public static function fromSnakeCaseArray(array $requestArray): self
+    public static function from(array $requestArray): self
     {
         return new self(
             externalPaymentId: $requestArray['external_payment_id'],

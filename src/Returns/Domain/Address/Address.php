@@ -7,23 +7,23 @@ namespace MyParcelCom\Wms\Returns\Domain\Address;
 class Address
 {
     public function __construct(
-        public ?string $street1,
+        public string $street1,
         public ?string $street2,
         public ?int $streetNumber,
         public ?string $streetNumberSuffix,
         public ?string $postalCode,
-        public ?string $city,
+        public string $city,
         public ?string $stateCode,
-        public ?string $countryCode,
+        public string $countryCode,
         public ?string $company,
-        public ?string $firstName,
-        public ?string $lastName,
+        public string $firstName,
+        public string $lastName,
         public ?string $email,
         public ?string $phoneNumber,
     ) {
     }
 
-    public static function fromSnakeCaseArray(array $data): self
+    public static function from(array $data): self
     {
         return new self(
             street1: $data['street_1'] ?? null,

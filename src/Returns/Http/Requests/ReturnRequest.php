@@ -25,24 +25,24 @@ class ReturnRequest extends FormRequest
 
     public function consumerAddress(): Address
     {
-        return Address::fromSnakeCaseArray($this->input('data.consumer_address'));
+        return Address::from($this->input('data.consumer_address'));
     }
 
     public function returnAddress(): Address
     {
-        return Address::fromSnakeCaseArray($this->input('data.return_address'));
+        return Address::from($this->input('data.return_address'));
     }
 
     public function payment(): ReturnPayment
     {
-        return ReturnPayment::fromSnakeCaseArray($this->input('data.payment'));
+        return ReturnPayment::from($this->input('data.payment'));
     }
 
     public function items(): ReturnItemCollection
     {
         return new ReturnItemCollection(
             ...array_map(
-                fn (array $item) => ReturnItem::fromSnakeCaseArray($item),
+                fn (array $item) => ReturnItem::from($item),
                 $this->input('data.items'),
             ),
         );

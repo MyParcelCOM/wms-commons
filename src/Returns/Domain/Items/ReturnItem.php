@@ -14,8 +14,8 @@ readonly class ReturnItem
 {
     public function __construct(
         public string $externalReference,
-        public string $sku,
-        public string $name,
+        public ?string $sku,
+        public ?string $name,
         public int $quantity,
         public int $priceAmount,
         public Currency $currency,
@@ -27,12 +27,12 @@ readonly class ReturnItem
     ) {
     }
 
-    public static function fromSnakeCaseArray(array $requestArray): self
+    public static function from(array $requestArray): self
     {
         return new self(
             externalReference: $requestArray['external_reference'],
-            sku: $requestArray['sku'],
-            name: $requestArray['name'],
+            sku: $requestArray['sku'] ?? null,
+            name: $requestArray['name'] ?? null,
             quantity: $requestArray['quantity'],
             priceAmount: $requestArray['price_amount'],
             currency: Currency::from($requestArray['currency']),

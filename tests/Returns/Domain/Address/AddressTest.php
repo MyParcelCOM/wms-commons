@@ -30,7 +30,7 @@ class AddressTest extends TestCase
             "phone_number" => $faker->phoneNumber(),
         ];
 
-        $address = Address::fromSnakeCaseArray($stub);
+        $address = Address::from($stub);
 
         $this->assertEquals($address->street1, $stub['street_1']);
         $this->assertEquals($address->street2, $stub['street_2']);

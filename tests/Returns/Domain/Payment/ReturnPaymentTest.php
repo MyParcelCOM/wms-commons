@@ -20,7 +20,7 @@ class ReturnPaymentTest extends TestCase
             'currency'            => $faker->randomElement(Currency::cases())->value,
         ];
 
-        $payment = ReturnPayment::fromSnakeCaseArray($stub);
+        $payment = ReturnPayment::from($stub);
 
         $this->assertEquals($payment->externalPaymentId, $stub['external_payment_id']);
         $this->assertEquals($payment->amount, $stub['amount']);
