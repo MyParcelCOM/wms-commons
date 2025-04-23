@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Tests\Returns\Http\Requests;
 
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use MyParcelCom\Wms\Returns\Domain\Address\Address;
-use MyParcelCom\Wms\Returns\Domain\Items\ReturnItem;
+use MyParcelCom\Wms\Returns\Domain\Items\PreferredOutcome;
 use MyParcelCom\Wms\Returns\Domain\Items\WeightUnit;
 use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
-use MyParcelCom\Wms\Returns\Domain\Payment\ReturnPayment;
 use MyParcelCom\Wms\Returns\Http\Requests\ReturnRequest;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertEquals;
@@ -20,7 +17,6 @@ class ReturnRequestTest extends TestCase
 {
     public function test_it_parses_incoming_data_correctly(): void
     {
-        $timestamp = Carbon::now()->unix();
         $stub = [
             'data' => [
                 'order_reference'  => 'ref-order-123',
@@ -73,6 +69,20 @@ class ReturnRequestTest extends TestCase
                         'comment'            => 'No issues',
                         'return_reason'      => 'damaged',
                         'description'        => 'A sample item description',
+                        'image_url'          => 'https://example.com/image.jpg',
+                        'preferred_outcome'  => 'exchange',
+                        'return_question_answers' => [
+                            [
+                                'code' => 'myparcelcom:question-1',
+                                'answer'      => 'This is the solution',
+                                'description' => 'This is the description',
+                            ],
+                            [
+                                'code' => 'myparcelcom:question-2',
+                                'answer'      => 'Yet another solution',
+                                'description' => 'Yet another description',
+                            ],
+                        ],
                     ],
                     [
                         'external_reference' => 'ref-item-2',
@@ -86,6 +96,8 @@ class ReturnRequestTest extends TestCase
                         'comment'            => 'This is massive',
                         'return_reason'      => 'wrong_size',
                         'description'        => 'Another sample item description',
+                        'image_url'          => 'https://example.com/image2.jpg',
+                        'preferred_outcome'  => 'refund',
                     ],
                 ]
             ]
@@ -140,6 +152,14 @@ class ReturnRequestTest extends TestCase
         assertEquals('No issues', $request->items()[0]->comment);
         assertEquals('damaged', $request->items()[0]->returnReason);
         assertEquals('A sample item description', $request->items()[0]->description);
+        assertEquals('https://example.com/image.jpg', $request->items()[0]->imageUrl);
+        assertEquals(PreferredOutcome::EXCHANGE, $request->items()[0]->preferredOutcome);
+        assertEquals('myparcelcom:question-1', $request->items()[0]->questionAnswers[0]->code);
+        assertEquals('This is the solution', $request->items()[0]->questionAnswers[0]->answer);
+        assertEquals('This is the description', $request->items()[0]->questionAnswers[0]->description);
+        assertEquals('myparcelcom:question-2', $request->items()[0]->questionAnswers[1]->code);
+        assertEquals('Yet another solution', $request->items()[0]->questionAnswers[1]->answer);
+        assertEquals('Yet another description', $request->items()[0]->questionAnswers[1]->description);
 
         assertEquals('ref-item-2', $request->items()[1]->externalReference);
         assertEquals('sku-456', $request->items()[1]->sku);
@@ -152,23 +172,9 @@ class ReturnRequestTest extends TestCase
         assertEquals('This is massive', $request->items()[1]->comment);
         assertEquals('wrong_size', $request->items()[1]->returnReason);
         assertEquals('Another sample item description', $request->items()[1]->description);
+        assertEquals('https://example.com/image2.jpg', $request->items()[1]->imageUrl);
+        assertEquals(PreferredOutcome::REFUND, $request->items()[1]->preferredOutcome);
+        assertEquals(null, $request->items()[1]->questionAnswers);
 
     }
-
-
-    private function assertItemMatchesStubArray(array $stub, ReturnItem $item): void
-    {
-        $this->assertEquals($item->externalReference, $stub['external_reference']);
-        $this->assertEquals($item->sku, $stub['sku']);
-        $this->assertEquals($item->name, $stub['name']);
-        $this->assertEquals($item->quantity, $stub['quantity']);
-        $this->assertEquals($item->priceAmount, $stub['price_amount']);
-        $this->assertEquals($item->currency->value, $stub['currency']);
-        $this->assertEquals($item->weight, $stub['weight']);
-        $this->assertEquals($item->weightUnit->value, $stub['weight_unit']);
-        $this->assertEquals($item->comment, $stub['comment']);
-        $this->assertEquals($item->returnReason, $stub['return_reason']);
-        $this->assertEquals($item->description, $stub['description']);
-    }
-
 }

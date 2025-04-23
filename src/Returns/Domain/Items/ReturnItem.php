@@ -28,7 +28,7 @@ readonly class ReturnItem
         public ?string $returnReason = null,
         public ?string $imageUrl = null,
         public PreferredOutcome $preferredOutcome,
-        public QuestionAnswerCollection $questionAnswers,
+        public ?QuestionAnswerCollection $questionAnswers,
     ) {
     }
 
@@ -48,12 +48,13 @@ readonly class ReturnItem
             returnReason: $requestArray['return_reason'] ?? null,
             imageUrl: $requestArray['image_url'] ?? null,
             preferredOutcome: PreferredOutcome::from($requestArray['preferred_outcome']),
-            questionAnswers: new QuestionAnswerCollection(
-                ...array_map(
-                    fn (array $item) => QuestionAnswer::from($item),
-                    $requestArray['return_question_answers'],
-                )
-            ),
+            questionAnswers: $requestArray['return_question_answers']
+                ? new QuestionAnswerCollection(
+                    ...array_map(
+                        fn (array $item) => QuestionAnswer::from($item),
+                        $requestArray['return_question_answers'],
+                    )
+                ) : null,
         );
     }
 }

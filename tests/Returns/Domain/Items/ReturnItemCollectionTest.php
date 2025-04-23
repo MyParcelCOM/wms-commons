@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Returns\Domain\Items;
 
 use Faker\Factory;
+use MyParcelCom\Wms\Returns\Domain\Items\PreferredOutcome;
 use MyParcelCom\Wms\Returns\Domain\Items\ReturnItem;
 use MyParcelCom\Wms\Returns\Domain\Items\ReturnItemCollection;
 use MyParcelCom\Wms\Returns\Domain\Items\WeightUnit;
@@ -29,6 +30,9 @@ class ReturnItemCollectionTest extends TestCase
             'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
             'comment'            => $faker->sentence(),
             'description'        => $faker->sentence(),
+            'return_reason'      => $faker->sentence(),
+            'image_url'          => $faker->url(),
+            'preferred_outcome'  => $faker->randomElement(PreferredOutcome::cases())->value,
         ];
 
         $stub2 = [
@@ -42,6 +46,9 @@ class ReturnItemCollectionTest extends TestCase
             'weight_unit'        => $faker->randomElement(WeightUnit::cases())->value,
             'comment'            => $faker->sentence(),
             'description'        => $faker->sentence(),
+            'return_reason'      => $faker->sentence(),
+            'image_url'          => $faker->url(),
+            'preferred_outcome'  => $faker->randomElement(PreferredOutcome::cases())->value,
         ];
 
         $item1 = ReturnItem::from($stub1);;
