@@ -53,7 +53,7 @@ readonly class ReturnItem
                     ...array_map(
                         fn (array $item) => QuestionAnswer::from($item),
                         $requestArray['return_question_answers'],
-                    )
+                    ),
                 ) : null,
         );
     }

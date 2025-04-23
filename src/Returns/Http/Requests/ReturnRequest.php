@@ -42,9 +42,9 @@ class ReturnRequest extends FormRequest
     {
         return new ReturnItemCollection(
             ...array_map(
-                fn (array $item) => ReturnItem::from($item),
-                $this->input('data.items'),
-            ),
+            fn (array $item) => ReturnItem::from($item),
+            $this->input('data.items'),
+        ),
         );
     }
 }
