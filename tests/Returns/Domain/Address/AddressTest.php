@@ -34,18 +34,18 @@ class AddressTest extends TestCase
 
         $address = Address::from($stub);
 
-        assertEquals($address->street1, $stub['street_1']);
-        assertEquals($address->street2, $stub['street_2']);
-        assertEquals($address->streetNumber, $stub['street_number']);
-        assertEquals($address->streetNumberSuffix, $stub['street_number_suffix']);
-        assertEquals($address->postalCode, $stub['postal_code']);
-        assertEquals($address->city, $stub['city']);
-        assertEquals($address->stateCode, $stub['state_code']);
-        assertEquals($address->countryCode, $stub['country_code']);
-        assertEquals($address->company, $stub['company']);
-        assertEquals($address->firstName, $stub['first_name']);
-        assertEquals($address->lastName, $stub['last_name']);
-        assertEquals($address->email, $stub['email']);
-        assertEquals($address->phoneNumber, $stub['phone_number']);
+        assertEquals($stub['street_1'], $address->street1);
+        assertEquals($stub['street_2'], $address->street2);
+        assertEquals($stub['street_number'], $address->streetNumber);
+        assertEquals($stub['street_number_suffix'], $address->streetNumberSuffix);
+        assertEquals($stub['postal_code'], $address->postalCode);
+        assertEquals($stub['city'], $address->city);
+        assertEquals($stub['state_code'], $address->stateCode);
+        assertEquals($stub['country_code'], $address->countryCode);
+        assertEquals($stub['company'], $address->company);
+        assertEquals($stub['first_name'], $address->firstName);
+        assertEquals($stub['last_name'], $address->lastName);
+        assertEquals($stub['email'], $address->email);
+        assertEquals($stub['phone_number'], $address->phoneNumber);
     }
 }

@@ -24,8 +24,8 @@ class ReturnPaymentTest extends TestCase
 
         $payment = ReturnPayment::from($stub);
 
-        assertEquals($payment->externalPaymentId, $stub['external_payment_id']);
-        assertEquals($payment->amount, $stub['amount']);
-        assertEquals($payment->currency->value, $stub['currency']);
+        assertEquals($stub['external_payment_id'], $payment->externalPaymentId);
+        assertEquals($stub['amount'], $payment->amount);
+        assertEquals($stub['currency'], $payment->currency->value);
     }
 }
