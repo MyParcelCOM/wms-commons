@@ -11,6 +11,8 @@ use MyParcelCom\Wms\Returns\Domain\Payment\Currency;
 use MyParcelCom\Wms\Returns\Http\Requests\ReturnRequest;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertCount;
+use function PHPUnit\Framework\assertEmpty;
 use function PHPUnit\Framework\assertEquals;
 
 
@@ -155,6 +157,8 @@ class ReturnRequestTest extends TestCase
         assertEquals('A sample item description', $request->items()[0]->description);
         assertEquals('https://example.com/image.jpg', $request->items()[0]->imageUrl);
         assertEquals(PreferredOutcome::EXCHANGE, $request->items()[0]->preferredOutcome);
+
+        assertCount(2, $request->items()[0]->questionAnswers);
         assertEquals('myparcelcom:question-1', $request->items()[0]->questionAnswers[0]->code);
         assertEquals('This is the solution', $request->items()[0]->questionAnswers[0]->answer);
         assertEquals('This is the description', $request->items()[0]->questionAnswers[0]->description);
@@ -175,6 +179,6 @@ class ReturnRequestTest extends TestCase
         assertEquals('Another sample item description', $request->items()[1]->description);
         assertEquals('https://example.com/image2.jpg', $request->items()[1]->imageUrl);
         assertEquals(PreferredOutcome::REFUND, $request->items()[1]->preferredOutcome);
-        assertEquals(null, $request->items()[1]->questionAnswers);
+        assertEmpty($request->items()[1]->questionAnswers);;
     }
 }

@@ -33,10 +33,10 @@ class Address
             postalCode: $data['postal_code'] ?? null,
             city: $data['city'],
             stateCode: $data['state_code'] ?? null,
-            countryCode: $data['country_code'] ?? null,
+            countryCode: $data['country_code'],
             company: $data['company'] ?? null,
-            firstName: $data['first_name'] ?? null,
-            lastName: $data['last_name'] ?? null,
+            firstName: $data['first_name'],
+            lastName: $data['last_name'],
             email: $data['email'] ?? null,
             phoneNumber: $data['phone_number'] ?? null,
         );
