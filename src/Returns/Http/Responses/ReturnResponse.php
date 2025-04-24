@@ -19,7 +19,7 @@ readonly class ReturnResponse implements Responsable
     {
         return new JsonResponse([
            'data' => [
-               'wms_return_identifier' => $this->wmsReturnId,
+               'wms_return_id' => $this->wmsReturnId,
            ]
         ]);
     }
