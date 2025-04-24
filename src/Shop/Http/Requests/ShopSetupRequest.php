@@ -12,8 +12,8 @@ class ShopSetupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data.settings'         => 'array',
-            'data.redirect_url'     => 'url',
+            'data.settings'     => 'array',
+            'data.redirect_url' => 'url',
         ];
     }
 }
