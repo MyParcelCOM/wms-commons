@@ -26,7 +26,7 @@ class Address
     public static function from(array $data): self
     {
         return new self(
-            street1: $data['street_1'] ?? null,
+            street1: $data['street_1'],
             street2: $data['street_2'] ?? null,
             streetNumber: $data['street_number'] ?? null,
             streetNumberSuffix: $data['street_number_suffix'] ?? null,
