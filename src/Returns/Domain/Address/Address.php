@@ -31,7 +31,7 @@ class Address
             streetNumber: $data['street_number'] ?? null,
             streetNumberSuffix: $data['street_number_suffix'] ?? null,
             postalCode: $data['postal_code'] ?? null,
-            city: $data['city'] ?? null,
+            city: $data['city'],
             stateCode: $data['state_code'] ?? null,
             countryCode: $data['country_code'] ?? null,
             company: $data['company'] ?? null,
