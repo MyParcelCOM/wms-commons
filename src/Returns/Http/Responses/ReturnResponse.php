@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MyParcelCom\Wms\Returns\Http\Responses;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\JsonResponse;
+
 class ReturnResponse implements Responsable
 {
     /**
