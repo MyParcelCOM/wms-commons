@@ -11,10 +11,12 @@ use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Checkbox;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Form;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Number;
+use MyParcelCom\JsonSchema\FormBuilder\Form\Option;
+use MyParcelCom\JsonSchema\FormBuilder\Form\OptionCollection;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Password;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Select;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Text;
-use MyParcelCom\JsonSchema\FormBuilder\Properties\PropertyType;
+use MyParcelCom\JsonSchema\FormBuilder\Properties\SchemaPropertyType;
 use MyParcelCom\JsonSchema\FormBuilder\Values\Value;
 use MyParcelCom\JsonSchema\FormBuilder\Values\ValueCollection;
 use MyParcelCom\Wms\Configuration\Http\Responses\ConfigurationResponse;
@@ -28,11 +30,7 @@ class ConfigurationResponseTest extends TestCase
 
     public function test_it_creates_a_configuration_response_with_minimal_data(): void
     {
-        $form = Mockery::mock(Form::class, [
-            'toArray'     => [],
-            'getRequired' => [],
-        ]);
-
+        $form = new Form();
         $configuration = new ConfigurationResponse($form);
 
         assertEquals(
@@ -51,13 +49,9 @@ class ConfigurationResponseTest extends TestCase
 
     public function test_it_creates_a_configuration_response_with_values(): void
     {
-        $form = Mockery::mock(Form::class, [
-            'toArray'     => [],
-            'getRequired' => [],
-        ]);
-
         $faker = Factory::create();
 
+        $form = new Form();
         $name = $faker->word();
         $value = $faker->word();
 
@@ -120,10 +114,13 @@ class ConfigurationResponseTest extends TestCase
         );
         $select = new Select(
             name: $nameSelect,
-            type: PropertyType::STRING,
             label: $label,
+            options: new OptionCollection(
+                new Option('1'),
+                new Option('2'),
+                new Option('3'),
+            ),
             isRequired: true,
-            enum: ['1', '2', '3'],
         );
         $form = new Form(
             $text,
@@ -177,6 +174,7 @@ class ConfigurationResponseTest extends TestCase
                                 '2',
                                 '3',
                             ],
+                            'meta' => ['field_type' => 'select']
                         ],
                     ],
                 ],
