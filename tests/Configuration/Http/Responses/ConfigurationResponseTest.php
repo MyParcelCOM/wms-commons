@@ -16,7 +16,6 @@ use MyParcelCom\JsonSchema\FormBuilder\Form\OptionCollection;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Password;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Select;
 use MyParcelCom\JsonSchema\FormBuilder\Form\Text;
-use MyParcelCom\JsonSchema\FormBuilder\Properties\SchemaPropertyType;
 use MyParcelCom\JsonSchema\FormBuilder\Values\Value;
 use MyParcelCom\JsonSchema\FormBuilder\Values\ValueCollection;
 use MyParcelCom\Wms\Configuration\Http\Responses\ConfigurationResponse;
