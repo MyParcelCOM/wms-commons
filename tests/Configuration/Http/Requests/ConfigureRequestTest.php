@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Configuration\Http\Requests;
 
 use MyParcelCom\Wms\Configuration\Http\Requests\ConfigureRequest;
-
 use PHPUnit\Framework\TestCase;
 
 use function PHPUnit\Framework\assertEquals;
@@ -18,7 +17,7 @@ class ConfigureRequestTest extends TestCase
         $request = new ConfigureRequest();
         $request->replace([
             'data' => [
-                'my_name' => 'my_value',
+                'my_name'  => 'my_value',
                 'my_group' => [
                     'my_sub_name' => 'my_sub_value',
                 ],
