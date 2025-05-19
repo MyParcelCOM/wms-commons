@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Configuration\Http\Responses;
 
-use Faker\Factory;
 use Illuminate\Http\Request;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -33,10 +32,10 @@ class ConfigurationResponseTest extends TestCase
         assertEquals(
             [
                 'configuration_schema' => [
-                        '$schema'              => 'https://json-schema.org/draft/2020-12/schema',
-                        'additionalProperties' => false,
-                        'required'             => [],
-                        'properties'           => [],
+                    '$schema'              => 'https://json-schema.org/draft/2020-12/schema',
+                    'additionalProperties' => false,
+                    'required'             => [],
+                    'properties'           => [],
                 ],
             ],
             $configuration->toResponse(Mockery::mock(Request::class))->getData(true),
@@ -76,7 +75,6 @@ class ConfigurationResponseTest extends TestCase
 
     public function test_it_creates_a_configuration_response_with_all_data(): void
     {
-
         $text = new Text(
             name: 'text_field',
             label: 'Text Field',
@@ -108,7 +106,7 @@ class ConfigurationResponseTest extends TestCase
                 new Option('2', 'Two'),
                 new Option('3', 'Three'),
             ),
-            value: '3'
+            value: '3',
         );
         $form = new Form(
             $text,
@@ -154,21 +152,21 @@ class ConfigurationResponseTest extends TestCase
                             'type'        => 'string',
                             'description' => 'Select Field',
                             'enum'        => ['1', '2', '3'],
-                            'meta' => [
-                                'field_type' => 'select',
+                            'meta'        => [
+                                'field_type'  => 'select',
                                 'enum_labels' => [
                                     '1' => 'One',
                                     '2' => 'Two',
                                     '3' => 'Three',
                                 ],
-                            ]
+                            ],
                         ],
                     ],
                 ],
                 'values'               => [
-                    'text_field'     => 'text_value',
-                    'number_field'   => 23.2,
-                    'select_field'   => '3',
+                    'text_field'   => 'text_value',
+                    'number_field' => 23.2,
+                    'select_field' => '3',
                 ],
             ],
             $configuration->toResponse(Mockery::mock(Request::class))->getData(true),
