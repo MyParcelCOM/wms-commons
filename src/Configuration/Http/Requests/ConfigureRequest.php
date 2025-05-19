@@ -21,7 +21,6 @@ class ConfigureRequest extends FormRequest
      */
     public function getPropertyValue(string $propertyName): mixed
     {
-
         return Arr::get($this->input('data', []), $propertyName);
     }
 }
