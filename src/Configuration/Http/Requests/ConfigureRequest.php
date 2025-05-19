@@ -11,9 +11,12 @@ class ConfigureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data.properties'         => 'array',
-            'data.properties.*.name'  => 'required|string',
-            'data.properties.*.value' => 'required',
+            'data' => 'array',
         ];
+    }
+
+    public function getPropertyValue(string $propertyName): mixed
+    {
+        return $this->input('data', [])[$propertyName] ?? null;
     }
 }
