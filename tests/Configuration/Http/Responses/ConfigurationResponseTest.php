@@ -32,13 +32,12 @@ class ConfigurationResponseTest extends TestCase
 
         assertEquals(
             [
-                'configuration_schema' =>
-                    [
+                'configuration_schema' => [
                         '$schema'              => 'https://json-schema.org/draft/2020-12/schema',
                         'additionalProperties' => false,
                         'required'             => [],
                         'properties'           => [],
-                    ],
+                ],
             ],
             $configuration->toResponse(Mockery::mock(Request::class))->getData(true),
         );
