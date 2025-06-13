@@ -35,7 +35,10 @@ class ReturnRequest extends FormRequest
 
     public function payment(): ReturnPayment|null
     {
-        return ReturnPayment::from($this->input('data.payment'));
+        $paymentData = $this->input('data.payment');
+        return $paymentData
+            ? ReturnPayment::from($paymentData)
+            : null;
     }
 
     public function items(): ReturnItemCollection
