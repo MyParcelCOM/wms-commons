@@ -18,9 +18,10 @@ use function PHPUnit\Framework\assertEquals;
 
 class ReturnRequestTest extends TestCase
 {
-    public function test_it_parses_incoming_data_correctly(): void
+    protected array $stub;
+    protected function setUp(): void
     {
-        $stub = [
+        $this->stub = [
             'data' => [
                 'order_reference'  => 'ref-order-123',
                 'created_at'       => 1745409687,
@@ -106,8 +107,12 @@ class ReturnRequestTest extends TestCase
             ],
         ];
 
+    }
+
+    public function test_it_parses_incoming_data_correctly(): void
+    {
         $request = new ReturnRequest();
-        $request->replace($stub);
+        $request->replace($this->stub);
 
         assertEquals('ref-order-123', $request->orderReference());
         assertEquals(Carbon::createFromTimestamp(1745409687), $request->createdAt());
@@ -180,5 +185,16 @@ class ReturnRequestTest extends TestCase
         assertEquals('https://example.com/image2.jpg', $request->items()[1]->imageUrl);
         assertEquals(PreferredOutcome::REFUND, $request->items()[1]->preferredOutcome);
         assertEmpty($request->items()[1]->questionAnswers);;
+    }
+
+    public function test_it_handles_missing_payment_key(): void
+    {
+        $stub = $this->stub;
+        unset($stub['data']['payment']);
+
+        $request = new ReturnRequest();
+        $request->replace($stub);
+
+        assertEquals(null, $request->payment());
     }
 }
