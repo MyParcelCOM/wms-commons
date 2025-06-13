@@ -33,7 +33,7 @@ class ReturnRequest extends FormRequest
         return Address::from($this->input('data.return_address'));
     }
 
-    public function payment(): ReturnPayment|null
+    public function payment(): ?ReturnPayment
     {
         $paymentData = $this->input('data.payment');
         return $paymentData
