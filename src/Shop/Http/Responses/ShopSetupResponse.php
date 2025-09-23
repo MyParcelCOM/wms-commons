@@ -11,7 +11,7 @@ class ShopSetupResponse implements Responsable
 {
     /**
      * @param string|null $authorizationUrl  URL to external authorization service.
-     * @param bool        $showConfiguration Instruction to the recipient of the response to fetch the configuration schema.
+     * @param bool        $showConfiguration Instruction to the client of the response to display configuration form
      */
     public function __construct(
         private readonly ?string $authorizationUrl = null,
