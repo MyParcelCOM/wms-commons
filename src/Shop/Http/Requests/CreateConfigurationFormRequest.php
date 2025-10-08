@@ -24,7 +24,7 @@ class CreateConfigurationFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data.return_reasons'         => 'array|min:1',
+            'data.return_reasons'         => 'array',
             'data.return_reasons.*.code'  => 'required|string',
             'data.return_reasons.*.label' => 'required|string',
         ];
