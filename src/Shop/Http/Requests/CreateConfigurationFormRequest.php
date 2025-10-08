@@ -29,4 +29,11 @@ class CreateConfigurationFormRequest extends FormRequest
             'data.return_reasons.*.label' => 'required|string',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'data.return_reasons' => 'Your shop requires at least one linked return reason.',
+        ];
+    }
 }
