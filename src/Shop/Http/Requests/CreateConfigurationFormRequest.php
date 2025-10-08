@@ -24,16 +24,9 @@ class CreateConfigurationFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data.return_reasons'         => 'array|min:1',
+            'data.return_reasons'         => 'array',
             'data.return_reasons.*.code'  => 'required|string',
             'data.return_reasons.*.label' => 'required|string',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'data.return_reasons' => 'Your shop requires at least one linked return reason.',
         ];
     }
 }
